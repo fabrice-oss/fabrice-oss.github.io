@@ -3,1020 +3,874 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fabrice Avrila — Formateur · Développeur · Créateur</title>
+<meta name="description" content="Fabrice Avrila — Formateur professionnel, développeur web, créateur de projets digitaux.">
+<title>Fabrice Avrila</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <style>
-/* ── VARIABLES ─────────────────────────────────────────────── */
-:root {
-  --bleu:       #516CA2;
-  --bleu-nuit:  #1C2B45;
-  --bleu-cl:    #D8E3F4;
-  --ardoise:    #22303F;
-  --anthracite: #2D3A47;
-  --lagon:      #1A8A74;
-  --lagon-cl:   #C8EDE7;
-  --sable:      #F5F1EB;
-  --or:         #C9920A;
-  --blanc:      #FFFFFF;
-  --gris-01:    #F7F6F4;
-  --gris-05:    #E8E5E0;
-  --gris-4:     #8C8882;
-  --texte:      #1A1A18;
+/* ══ RESET ══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Source Sans 3',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:#516CA2;border-radius:2px;}
 
-  --r: 8px;
-  --t: 0.35s cubic-bezier(.22,.68,0,1.2);
-  --t2: 0.5s cubic-bezier(.22,.68,0,1.1);
+/* ══ VARIABLES ══ */
+:root{
+  --bleu:#516CA2; --bleu-d:#2E4578; --or:#C9920A; --vert:#1A8A74;
+  --ardoise:#2D3A47; --blanc:#fff;
+  --fond-clair:#F0F4FA; --fond-dark:#080C14;
+  --t:cubic-bezier(0.76,0,0.24,1); --ts:cubic-bezier(0.34,1.4,0.64,1);
 }
 
-/* ── RESET + BASE ──────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--sable);
-  color: var(--texte);
-  overflow-x: hidden;
-}
-a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
 
-/* ── UTILITAIRES ───────────────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-/* ══════════════════════════════════════════════════════════════
-   NAVIGATION
+/* ══ TYPOGRAPHIE JW.ORG ══════════════════════════════════════
+   Source : analyse jw.org
+   - Corps      : 17px / weight 300 / line-height 1.75
+   - h1         : 48–72px / weight 200
+   - h2         : 30–40px / weight 300
+   - h3         : 20px / weight 600 / white-space:nowrap → ellipsis
+   - Labels/caps: 12px / weight 600 / letter-spacing .12em
+   - Couleurs   : #1a2035 (principal), #334455 (secondaire), #667788 (tertiaire)
 ══════════════════════════════════════════════════════════════ */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(20px, 5vw, 60px);
-  height: 64px;
-  background: rgba(245,241,235,0.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--gris-05);
-  transition: box-shadow 0.3s;
-}
-nav.scrolled {
-  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
-}
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--bleu-nuit);
-}
-.nav-logo span {
-  color: var(--bleu);
-}
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--gris-4);
-  transition: color var(--t);
-}
-.nav-links a:hover { color: var(--bleu-nuit); }
+body { font-size:17px; line-height:1.75; color:#1a2035; }
 
-/* ══════════════════════════════════════════════════════════════
-   HERO
-══════════════════════════════════════════════════════════════ */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-  overflow: hidden;
-}
+h1,h2,h3,h4 { font-family:'Source Sans 3',sans-serif; }
 
-/* Panneau gauche texte */
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px clamp(24px, 5vw, 72px) 80px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--bleu);
-  margin-bottom: 28px;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.2s ease forwards;
-}
-.hero-tag::before {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 1px;
-  background: var(--bleu);
-}
-
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 5.5vw, 5.2rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--bleu-nuit);
-  margin-bottom: 10px;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.35s ease forwards;
-}
-.hero-title .italic {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--bleu);
-}
-
-.hero-subtitle {
-  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+/* H2 — style jw.org : léger, aéré */
+h2 {
+  font-size: clamp(26px, 3.2vw, 40px);
   font-weight: 300;
-  color: var(--gris-4);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.5s ease forwards;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  color: inherit;
 }
-.hero-subtitle span {
-  color: var(--gris-4);
-  opacity: 0.6;
-  margin: 0 8px;
-}
+h2 em { font-style:italic; font-weight:300; }
+h2 strong { font-weight:700; }
 
-.hero-accroche {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--texte);
-  max-width: 440px;
-  margin-bottom: 52px;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.65s ease forwards;
-}
-
-.hero-btns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.8s ease forwards;
-}
-
-.btn-hero {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  border-radius: var(--r);
-  font-size: 0.88rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: all var(--t);
-  border: none;
-}
-.btn-hero.formation {
-  background: var(--bleu);
-  color: #fff;
-}
-.btn-hero.formation:hover {
-  background: var(--bleu-nuit);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(81,108,162,0.35);
-}
-.btn-hero.web {
-  background: var(--ardoise);
-  color: #fff;
-}
-.btn-hero.web:hover {
-  background: var(--anthracite);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(34,48,63,0.35);
-}
-.btn-hero.maurice {
-  background: var(--lagon);
-  color: #fff;
-}
-.btn-hero.maurice:hover {
-  background: #13705e;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(26,138,116,0.35);
-}
-
-/* Panneau droit visuel */
-.hero-right {
-  position: relative;
+/* H3 — compact, une seule ligne, lisible */
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 30% 40%, rgba(81,108,162,0.18) 0%, transparent 60%),
-    radial-gradient(circle at 75% 70%, rgba(26,138,116,0.14) 0%, transparent 55%),
-    linear-gradient(135deg, #1C2B45 0%, #22303F 50%, #1A3A30 100%);
-}
-.hero-geo {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-.hero-geo::before {
-  content: '';
-  position: absolute;
-  top: 15%;
-  right: 10%;
-  width: 280px;
-  height: 280px;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 50%;
-  animation: rotateSlow 30s linear infinite;
-}
-.hero-geo::after {
-  content: '';
-  position: absolute;
-  top: 25%;
-  right: 18%;
-  width: 160px;
-  height: 160px;
-  border: 1px solid rgba(81,108,162,0.4);
-  border-radius: 50%;
-  animation: rotateSlow 20s linear infinite reverse;
-}
-.hero-floats {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 60px 40px;
-}
-.hero-float-card {
-  width: 100%;
-  max-width: 340px;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  padding: 18px 22px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  opacity: 0;
-  animation: slideLeft 0.8s ease forwards;
-}
-.hero-float-card:nth-child(1) { animation-delay: 0.9s; }
-.hero-float-card:nth-child(2) { animation-delay: 1.1s; }
-.hero-float-card:nth-child(3) { animation-delay: 1.3s; }
-.hero-float-card:nth-child(2) {
-  transform: translateX(30px);
-}
-.hfc-dot {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-}
-.hfc-dot.f { background: rgba(81,108,162,0.35); }
-.hfc-dot.w { background: rgba(255,255,255,0.1); }
-.hfc-dot.m { background: rgba(26,138,116,0.35); }
-.hfc-text strong {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 2px;
-}
-.hfc-text span {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.55);
+
+/* Paragraphes — jw.org standard */
+p {
+  font-size: 17px;
   font-weight: 300;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   PRÉSENTATION
-══════════════════════════════════════════════════════════════ */
-.section-presentation {
-  padding: clamp(80px, 10vw, 130px) clamp(24px, 8vw, 120px);
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 80px;
-  align-items: center;
-  background: var(--gris-01);
-  position: relative;
-}
-.section-presentation::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-  background: linear-gradient(to bottom, var(--bleu), var(--lagon));
-}
-.pres-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bleu);
-  margin-bottom: 20px;
-}
-.pres-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--bleu-nuit);
-  margin-bottom: 24px;
-}
-.pres-title em {
-  font-style: italic;
-  color: var(--bleu);
-}
-.pres-text {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #4a4a46;
-  max-width: 540px;
-}
-.pres-valeurs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.valeur-item {
-  background: var(--blanc);
-  border-radius: var(--r);
-  padding: 22px 24px;
-  border: 1px solid var(--gris-05);
-  transition: border-color var(--t), transform var(--t);
-}
-.valeur-item:hover {
-  border-color: var(--bleu);
-  transform: translateY(-3px);
-}
-.valeur-icon {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-.valeur-nom {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--bleu-nuit);
-  margin-bottom: 4px;
-}
-.valeur-desc {
-  font-size: 0.82rem;
-  color: var(--gris-4);
-  line-height: 1.5;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   UNIVERS — 3 CARTES
-══════════════════════════════════════════════════════════════ */
-.section-univers {
-  padding: clamp(80px, 10vw, 130px) clamp(24px, 8vw, 120px);
-}
-.univers-header {
-  text-align: center;
-  margin-bottom: 64px;
-}
-.section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bleu);
-  margin-bottom: 16px;
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 700;
-  color: var(--bleu-nuit);
-  line-height: 1.15;
-}
-.section-title em {
-  font-style: italic;
-  color: var(--bleu);
-}
-
-.univers-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.univers-card {
-  border-radius: 18px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--t2), box-shadow var(--t2);
-  cursor: pointer;
-}
-.univers-card:hover {
-  transform: translateY(-8px);
-}
-.univers-card:hover .card-arrow {
-  transform: translate(3px, -3px);
-}
-
-/* Couleurs par carte */
-.univers-card.formation {
-  background: linear-gradient(145deg, #1C2B45, #2C4478);
-  box-shadow: 0 8px 40px rgba(28,43,69,0.25);
-}
-.univers-card.formation:hover {
-  box-shadow: 0 20px 60px rgba(81,108,162,0.35);
-}
-.univers-card.web {
-  background: linear-gradient(145deg, #1A2330, #2D3A47);
-  box-shadow: 0 8px 40px rgba(26,35,48,0.25);
-}
-.univers-card.web:hover {
-  box-shadow: 0 20px 60px rgba(44,58,71,0.4);
-}
-.univers-card.maurice {
-  background: linear-gradient(145deg, #0D4A3E, #1A8A74);
-  box-shadow: 0 8px 40px rgba(13,74,62,0.25);
-}
-.univers-card.maurice:hover {
-  box-shadow: 0 20px 60px rgba(26,138,116,0.35);
-}
-
-/* Motif décoratif en haut de carte */
-.card-top {
-  position: relative;
-  height: 140px;
-  overflow: hidden;
-}
-.card-top-circle {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.card-top-circle.c1 {
-  width: 200px; height: 200px;
-  top: -80px; right: -60px;
-}
-.card-top-circle.c2 {
-  width: 120px; height: 120px;
-  top: -10px; right: 40px;
-}
-.card-num {
-  position: absolute;
-  bottom: 20px;
-  left: 28px;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-}
-.card-emoji {
-  position: absolute;
-  top: 28px;
-  left: 28px;
-  font-size: 1.8rem;
-}
-
-/* Corps carte */
-.card-body {
-  padding: 24px 28px 28px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 6px;
-  line-height: 1.2;
-}
-.card-subtitle {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-.card-sep {
-  width: 36px;
-  height: 2px;
-  border-radius: 2px;
-  margin-bottom: 18px;
-  opacity: 0.5;
-}
-.formation .card-sep { background: var(--bleu-cl); }
-.web .card-sep { background: rgba(255,255,255,0.4); }
-.maurice .card-sep { background: var(--lagon-cl); }
-
-.card-text {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.72);
-  flex: 1;
-  margin-bottom: 28px;
-}
-.card-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 22px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--t);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  background: rgba(255,255,255,0.08);
-  align-self: flex-start;
-}
-.card-btn:hover {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(255,255,255,0.35);
-}
-.card-arrow {
-  transition: transform var(--t);
-  font-style: normal;
-}
-.card-url {
-  margin-top: 14px;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.06em;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   CONTACT
-══════════════════════════════════════════════════════════════ */
-.section-contact {
-  padding: clamp(80px, 10vw, 120px) clamp(24px, 8vw, 120px);
-  background: var(--bleu-nuit);
-  position: relative;
-  overflow: hidden;
-}
-.section-contact::before {
-  content: '';
-  position: absolute;
-  top: -200px; right: -200px;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(81,108,162,0.15), transparent 70%);
-}
-.section-contact::after {
-  content: '';
-  position: absolute;
-  bottom: -150px; left: -150px;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,138,116,0.12), transparent 70%);
-}
-.contact-inner {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-.contact-left .section-label { color: rgba(255,255,255,0.45); }
-.contact-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 3vw, 2.8rem);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.15;
-  margin-bottom: 20px;
-}
-.contact-title em {
-  font-style: italic;
-  color: var(--bleu-cl);
-}
-.contact-text {
-  font-size: 1rem;
   line-height: 1.75;
-  color: rgba(255,255,255,0.6);
-  max-width: 440px;
-}
-.contact-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--r);
-  transition: all var(--t);
-}
-.contact-item:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.18);
-  transform: translateX(4px);
-}
-.contact-icon {
-  width: 40px; height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15rem;
-  flex-shrink: 0;
-}
-.ci-email { background: rgba(81,108,162,0.3); }
-.ci-wa    { background: rgba(37,211,102,0.2); }
-.ci-li    { background: rgba(0,119,181,0.25); }
-.contact-item-text strong {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 2px;
-}
-.contact-item-text span {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.4);
+  color: #334455;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════════════════════════ */
-footer {
-  background: #111820;
-  padding: 28px clamp(24px, 8vw, 120px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.5);
-}
-.footer-logo strong { color: rgba(255,255,255,0.8); }
-.footer-copy {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.3);
-}
-.footer-links {
-  display: flex;
-  gap: 20px;
-}
-.footer-links a {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.35);
-  transition: color var(--t);
-}
-.footer-links a:hover { color: rgba(255,255,255,0.7); }
-
-/* ══════════════════════════════════════════════════════════════
-   KEYFRAMES
-══════════════════════════════════════════════════════════════ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes slideLeft {
-  from { opacity: 0; transform: translateX(40px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes rotateSlow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+/* Labels / overlines */
+.lbl {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════════════════════ */
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-right { height: 320px; }
-  .section-presentation { grid-template-columns: 1fr; gap: 40px; }
-  .univers-grid { grid-template-columns: 1fr; }
-  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
-  .nav-links { display: none; }
+/* ══ CURSEUR ══ */
+#cdot,#cring{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s,border-color .2s;}
+#cdot{width:7px;height:7px;background:var(--bleu);}
+#cring{width:34px;height:34px;border:1.5px solid rgba(81,108,162,.45);background:transparent;}
+body.ch #cdot{width:11px;height:11px;background:var(--or);}
+body.ch #cring{width:50px;height:50px;border-color:rgba(201,146,10,.5);}
+@media(max-width:768px){#cdot,#cring{display:none;}}
+
+/* ══ CANVAS PARTICULES ══ */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;}
+
+/* ══ INTRO OVERLAY ══ */
+#intro{
+  position:fixed;inset:0;z-index:1000;
+  background:var(--fond-dark);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .8s ease,visibility .8s;
 }
-@media (max-width: 640px) {
-  .pres-valeurs { grid-template-columns: 1fr; }
-  footer { flex-direction: column; align-items: flex-start; }
+#intro.out{opacity:0;visibility:hidden;pointer-events:none;}
+#lrow{display:flex;align-items:flex-end;gap:1px;}
+.ltr{
+  font-size:clamp(52px,9vw,100px);font-weight:700;
+  color:#fff;letter-spacing:-.02em;
+  display:inline-block;opacity:0;transform:translateY(0);
+}
+.ltr.dot{color:var(--bleu);}
+
+/* ══ LOGO STATIQUE ══ */
+#logo{
+  position:fixed;top:22px;left:28px;z-index:200;
+  font-size:16px;font-weight:700;color:var(--bleu);letter-spacing:.01em;
+  opacity:0;transition:opacity .5s;
+}
+#logo.show{opacity:1;}
+#logo .ld{color:rgba(81,108,162,.5);}
+
+/* ══ MENU FLOTTANT ══ */
+#fmenu{
+  position:fixed;bottom:28px;left:50%;
+  transform:translateX(-50%);
+  z-index:300;
+  display:flex;align-items:center;gap:0;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(81,108,162,0.15);
+  border-radius:50px;padding:0 8px;height:56px;
+  box-shadow:0 4px 24px rgba(81,108,162,0.14),0 1px 0 rgba(255,255,255,0.9) inset;
+  opacity:0;
+  transition:opacity .5s,transform .5s var(--ts),background .35s,border-color .35s,box-shadow .35s;
+  white-space:nowrap;
+}
+#fmenu.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* Thème sombre : quand on est dans une section dark */
+#fmenu.dark-mode{
+  background:rgba(14,20,36,0.88);
+  border-color:rgba(255,255,255,0.1);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 0 1px rgba(81,108,162,0.2);
+}
+/* État réduit = planète seule */
+#fmenu.collapsed{
+  padding:0;
+  border-radius:50%;width:56px;height:56px;
+  cursor:pointer;
+  box-shadow:0 8px 32px rgba(81,108,162,.4),0 0 0 2px rgba(81,108,162,.3);
+}
+#fmenu.collapsed .msep,
+#fmenu.collapsed .mi{
+  opacity:0;pointer-events:none;
+  max-width:0;padding:0;overflow:hidden;
+  transition:opacity .25s,max-width .35s var(--t),padding .35s;
+}
+#fmenu.collapsed .orbit-wrap{margin:auto;}
+/* Transition expand */
+.mi{
+  max-width:200px;
+  transition:opacity .35s .1s,max-width .35s var(--t),padding .35s,color .2s;
+}
+.msep{transition:opacity .35s .05s,max-width .35s var(--t);}
+
+/* Orbit wrap */
+.orbit-wrap{
+  width:44px;height:44px;position:relative;flex-shrink:0;margin:0 4px;
+}
+.planet{
+  position:absolute;top:50%;left:50%;width:13px;height:13px;border-radius:50%;
+  background:var(--bleu);transform:translate(-50%,-50%);
+  box-shadow:0 0 12px rgba(81,108,162,.7);z-index:2;
+}
+.orb{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(255,255,255,.18);}
+.o1{width:22px;height:16px;margin:-8px 0 0 -11px;animation:sp1 3.2s linear infinite;}
+.o2{width:36px;height:24px;margin:-12px 0 0 -18px;animation:sp2 5.8s linear infinite reverse;}
+.o3{width:42px;height:14px;margin:-7px 0 0 -21px;animation:sp3 4.5s linear infinite;}
+@keyframes sp1{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes sp2{from{transform:rotate(50deg);}to{transform:rotate(410deg);}}
+@keyframes sp3{from{transform:rotate(-30deg);}to{transform:rotate(330deg);}}
+.sat{position:absolute;width:5px;height:5px;border-radius:50%;top:50%;left:50%;margin:-2.5px 0 0 -2.5px;}
+.s1{background:var(--bleu);box-shadow:0 0 5px rgba(81,108,162,.9);animation:sa1 3.2s linear infinite;}
+.s2{background:var(--or);box-shadow:0 0 5px rgba(201,146,10,.9);animation:sa2 5.8s linear infinite reverse;}
+.s3{background:var(--vert);box-shadow:0 0 5px rgba(26,138,116,.9);animation:sa3 4.5s linear infinite;}
+@keyframes sa1{from{transform:rotate(0deg) translateX(11px) rotate(0deg);}to{transform:rotate(360deg) translateX(11px) rotate(-360deg);}}
+@keyframes sa2{from{transform:rotate(50deg) translateX(18px) rotate(-50deg);}to{transform:rotate(410deg) translateX(18px) rotate(-410deg);}}
+@keyframes sa3{from{transform:rotate(-30deg) translateX(21px) rotate(30deg);}to{transform:rotate(330deg) translateX(21px) rotate(-330deg);}}
+
+.msep{width:1px;height:24px;background:rgba(81,108,162,0.2);flex-shrink:0;max-width:1px;}
+#fmenu.dark-mode .msep{background:rgba(255,255,255,0.18);}
+.mi{
+  padding:0 18px;height:56px;display:flex;align-items:center;
+  font-size:15px;font-weight:400;letter-spacing:.01em;
+  color:#1a2035;cursor:pointer;
+  position:relative;border-radius:50px;
+  transition:color .2s;
+}
+.mi:hover,.mi.act{color:var(--bleu);}
+/* Texte clair quand menu dark */
+#fmenu.dark-mode .mi{color:rgba(255,255,255,0.85);}
+#fmenu.dark-mode .mi:hover,
+#fmenu.dark-mode .mi.act{color:#fff;}
+.mi::after{
+  content:'';position:absolute;bottom:9px;left:50%;transform:translateX(-50%);
+  width:0;height:2px;background:var(--bleu);border-radius:1px;
+  transition:width .3s var(--ts);
+}
+.mi:hover::after,.mi.act::after{width:calc(100% - 28px);}
+#fmenu.dark-mode .mi::after{background:#7B9DD4;}
+
+/* ══ SECTIONS ══ */
+section{position:relative;overflow:hidden;}
+
+/* ══ S1 — HERO (CLAIR) ══ */
+#s-hero{
+  min-height:100vh;background:var(--fond-clair);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:80px 24px 120px;
+}
+.aurora{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.abl{position:absolute;border-radius:50%;filter:blur(90px);}
+.ab1{width:65%;height:60%;top:-18%;left:-8%;background:rgba(81,108,162,.17);animation:am1 20s ease-in-out infinite alternate;}
+.ab2{width:55%;height:48%;top:-10%;right:-6%;background:rgba(201,146,10,.09);animation:am2 24s ease-in-out infinite alternate;}
+.ab3{width:48%;height:42%;bottom:-14%;left:25%;background:rgba(26,138,116,.09);animation:am3 18s ease-in-out infinite alternate;}
+@keyframes am1{from{transform:translate(0,0)scale(1);}to{transform:translate(5%,6%)scale(1.1);}}
+@keyframes am2{from{transform:translate(0,0)scale(1);}to{transform:translate(-4%,7%)scale(1.08);}}
+@keyframes am3{from{transform:translate(0,0)scale(1);}to{transform:translate(3%,-5%)scale(1.07);}}
+
+.hero-inner{position:relative;z-index:1;max-width:800px;}
+.h-tag{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--or);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px;}
+.h-tag-line{width:28px;height:1.5px;background:var(--or);}
+.h1{font-size:clamp(38px,6vw,76px);font-weight:200;line-height:1.02;letter-spacing:-.025em;color:#0D1629;margin-bottom:10px;}
+.h1 strong{font-weight:700;color:var(--bleu);}
+.h-div{width:44px;height:2px;background:linear-gradient(90deg,var(--bleu),var(--or));margin:18px auto 22px;border-radius:2px;}
+.h-roles{font-size:14px;font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:#667788;margin-bottom:24px;}
+.h-roles .s{margin:0 10px;color:var(--or);opacity:.5;}
+.h-accroche{font-size:18px;font-weight:300;line-height:1.78;color:#334455;max-width:560px;margin:0 auto 44px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+/* ── Boutons ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:4px;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;transition:transform .25s var(--ts),box-shadow .25s var(--ts);position:relative;overflow:hidden;}
+.btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .2s;}
+.btn:hover::before{background:rgba(255,255,255,.12);}
+.btn:hover{transform:translateY(-3px);}
+.btn-f{background:var(--bleu);color:#fff;}
+.btn-f:hover{box-shadow:0 10px 30px rgba(81,108,162,.45);}
+.btn-w{background:var(--ardoise);color:#fff;}
+.btn-w:hover{box-shadow:0 10px 30px rgba(45,58,71,.4);}
+.btn-m{background:var(--vert);color:#fff;}
+.btn-m:hover{box-shadow:0 10px 30px rgba(26,138,116,.4);}
+.btn-ol{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:4px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid;backdrop-filter:blur(8px);transition:all .25s var(--ts);}
+.btn-bl{border-color:var(--bleu);color:var(--bleu);background:rgba(81,108,162,.07);}
+.btn-bl:hover{background:var(--bleu);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(81,108,162,.35);}
+.btn-go{border-color:var(--or);color:#7B5500;background:rgba(201,146,10,.07);}
+.btn-go:hover{background:var(--or);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,146,10,.35);}
+
+/* ══ S2 — MES UNIVERS (DARK) ══ */
+#s-univers{background:#080C14;padding:100px clamp(24px,7vw,100px);}
+.s-label{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C9920A;display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.s-label::before{font-weight:700;color:rgba(201,146,10,.5);}
+.sl-uni::before{content:'01 —';}
+.s-h2{font-size:clamp(28px,3.2vw,42px);font-weight:300;line-height:1.12;letter-spacing:-.015em;color:#fff;margin-bottom:52px;}
+.s-h2 em{font-style:italic;color:rgba(81,108,162,.85);}
+.univers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+/* Carte glassmorphism dark */
+.ucard{
+  border-radius:16px;
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.08);
+  padding:30px 26px;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  transition:transform .12s linear,box-shadow .4s var(--ts),border-color .3s;
+  cursor:pointer;transform-style:preserve-3d;
+}
+.ucard-shine{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.1) 0%,transparent 60%);}
+.ucard:hover .ucard-shine{opacity:1;}
+.ucard-stripe{height:3px;position:absolute;top:0;left:0;right:0;border-radius:16px 16px 0 0;transition:height .3s var(--ts);}
+.ucard:hover .ucard-stripe{height:4px;}
+.ucard-halo{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:200px;height:130px;border-radius:50%;filter:blur(40px);opacity:.2;transition:opacity .4s var(--ts),transform .4s var(--ts);pointer-events:none;}
+.ucard:hover .ucard-halo{opacity:.5;transform:translateX(-50%) scale(1.2) translateY(10px);}
+.uc-num{font-size:11px;font-weight:300;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px;}
+.uc-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:transform .4s var(--ts);}
+.ucard:hover .uc-icon{transform:scale(1.1) translateY(-2px);}
+.uc-title{font-size:20px;font-weight:600;color:#fff;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.uc-sub{font-size:12px;font-weight:300;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.uc-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);margin-bottom:16px;}
+.uc-text{font-size:17px;font-weight:300;line-height:1.75;color:rgba(255,255,255,.8);flex:1;margin-bottom:20px;}
+.uc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px;}
+.utag{font-size:10px;font-weight:400;padding:3px 9px;border-radius:3px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);transition:all .2s;}
+.ucard:hover .utag{border-color:rgba(81,108,162,.3);color:rgba(81,108,162,.85);}
+.uc-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:4px;font-size:15px;font-weight:500;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;transition:all .25s var(--ts);align-self:flex-start;}
+.uc-btn:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.32);}
+.uc-arrow{transition:transform .25s var(--ts);display:inline-block;}
+.ucard:hover .uc-arrow{transform:translate(3px,-3px);}
+
+/* ══ S3 — QUI SUIS-JE (CLAIR) ══ */
+#s-qui{background:var(--fond-clair);padding:100px clamp(24px,7vw,100px);}
+.qui-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;}
+.sl-qui::before{content:'02 —';}
+.s-h2-dark{font-size:clamp(28px,3.2vw,42px);font-weight:300;line-height:1.12;letter-spacing:-.015em;color:#0D1629;margin-bottom:24px;}
+.s-h2-dark em{font-style:italic;color:var(--bleu);}
+.qui-text{font-size:18px;font-weight:300;line-height:1.78;color:#334455;margin-bottom:28px;}
+/* Carte qui suis-je glassmorphism clair */
+.who-card{
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 8px 40px rgba(81,108,162,.1),0 1px 0 rgba(255,255,255,.9) inset;
+  border-radius:16px;padding:30px;
+}
+.who-av-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.who-av{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--bleu),var(--bleu-d));display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:300;color:#fff;flex-shrink:0;box-shadow:0 0 0 3px rgba(81,108,162,.15),0 0 0 7px rgba(81,108,162,.06);}
+.who-title{font-size:18px;font-weight:600;color:#0D1629;}
+.who-role{font-size:13px;font-weight:300;letter-spacing:.06em;text-transform:uppercase;color:#8899AA;margin-top:4px;}
+.who-body{font-size:17px;font-weight:300;line-height:1.78;color:#334455;margin-bottom:22px;}
+.who-btns{display:flex;flex-wrap:wrap;gap:10px;}
+/* Timeline décorative */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:16px;padding-bottom:24px;position:relative;}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:7px;top:18px;bottom:0;width:1px;background:rgba(81,108,162,.15);}
+.tl-dot{width:15px;height:15px;border-radius:50%;border:2px solid var(--bleu);background:#fff;flex-shrink:0;margin-top:3px;transition:background .2s;box-shadow:0 0 0 3px rgba(81,108,162,.1);}
+.tl-item:hover .tl-dot{background:var(--bleu);}
+.tl-year{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--bleu);text-transform:uppercase;margin-bottom:4px;}
+.tl-title{font-size:17px;font-weight:600;color:#0D1629;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tl-desc{font-size:15px;font-weight:300;color:#667788;line-height:1.6;}
+
+/* ══ S4 — CONTACT (DARK) ══ */
+#s-contact{background:#080C14;padding:100px clamp(24px,7vw,100px);}
+.contact-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;}
+.sl-contact::before{content:'03 —';color:rgba(201,146,10,.5);}
+.s-label-contact{color:rgba(201,146,10,.8);}
+.contact-h2{font-size:clamp(28px,3.2vw,42px);font-weight:300;line-height:1.12;letter-spacing:-.015em;color:#fff;margin-bottom:20px;}
+.contact-h2 em{font-style:italic;color:rgba(81,108,162,.85);}
+.contact-text{font-size:18px;font-weight:300;line-height:1.78;color:rgba(255,255,255,.78);margin-bottom:36px;}
+.contact-methods{display:flex;flex-direction:column;gap:12px;}
+.cmethod{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 20px;
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;
+  transition:all .25s var(--ts);
+  cursor:pointer;
+}
+.cmethod:hover{background:rgba(255,255,255,.09);border-color:rgba(81,108,162,.3);transform:translateX(4px);}
+.cm-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s var(--ts);}
+.cmethod:hover .cm-icon{transform:scale(1.08);}
+.cm-title{font-size:17px;font-weight:600;color:#fff;margin-bottom:4px;}
+.cm-detail{font-size:15px;font-weight:300;color:rgba(255,255,255,.65);}
+
+/* RDV card dark */
+.rdv-card-dark{
+  background:rgba(254,248,236,.06);
+  border:1px solid rgba(201,146,10,.2);
+  border-radius:16px;padding:28px;
+}
+.rdv-top-d{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.rdv-ico-d{width:44px;height:44px;border-radius:10px;background:rgba(201,146,10,.12);border:1px solid rgba(201,146,10,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.rdv-h{font-size:18px;font-weight:600;color:#fff;}
+.rdv-p{font-size:14px;font-weight:300;color:rgba(201,146,10,.85);}
+.slots-dark{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;}
+.sd{font-size:14px;font-weight:300;padding:8px 14px;border-radius:3px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:rgba(255,255,255,.75);transition:all .2s;cursor:pointer;}
+.sd:hover{border-color:var(--bleu);color:var(--bleu);}
+.sd.ok{border-color:rgba(26,138,116,.4);color:rgba(26,138,116,.8);background:rgba(26,138,116,.07);}
+.gbadge-d{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:300;color:rgba(255,255,255,.35);border:1px solid rgba(201,146,10,.15);border-radius:3px;padding:4px 10px;background:rgba(255,255,255,.04);}
+
+/* ══ AURORA DARK (sections sombres) ══ */
+.aurora-dark{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.abd{position:absolute;border-radius:50%;filter:blur(100px);}
+.ad1{width:65%;height:55%;top:-20%;left:-10%;background:rgba(81,108,162,.12);animation:am1 22s ease-in-out infinite alternate;}
+.ad2{width:55%;height:48%;bottom:-15%;right:-8%;background:rgba(26,138,116,.08);animation:am3 26s ease-in-out infinite alternate;}
+
+/* ══ REVEAL SCROLL ══ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--t),transform .7s var(--t);}
+.reveal.on{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.08s;} .rd2{transition-delay:.16s;} .rd3{transition-delay:.24s;}
+
+/* ══ FOOTER ══ */
+footer{background:#040810;padding:24px clamp(24px,7vw,100px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,.05);}
+.ft-logo{font-size:15px;font-weight:700;color:var(--bleu);}
+.ft-copy{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);}
+.ft-links{display:flex;gap:20px;}
+.ft-links a{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);transition:color .2s;}
+.ft-links a:hover{color:var(--bleu);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  .univers-grid,.qui-inner,.contact-inner{grid-template-columns:1fr;}
+  .qui-inner{gap:40px;}
+  .contact-inner{gap:40px;}
+}
+@media(max-width:600px){
+  .hero-btns{flex-direction:column;align-items:center;}
+  footer{flex-direction:column;align-items:flex-start;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-logo">Fabrice <span>Avrila</span></div>
-  <ul class="nav-links">
-    <li><a href="#univers">Mes univers</a></li>
-    <li><a href="#presentation">À propos</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<!-- CURSEUR -->
+<a href="#main-content" style="position:absolute;left:-9999px;top:4px;z-index:10000;background:var(--bleu);color:#fff;padding:8px 16px;border-radius:4px;font-size:14px;font-weight:500;text-decoration:none;transition:left .2s;" onfocus="this.style.left='4px'" onblur="this.style.left='-9999px'">Aller au contenu principal</a>
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- PARTICULES -->
+<canvas id="particles"></canvas>
+
+<!-- ══ INTRO ══ -->
+<div id="intro">
+  <div id="lrow"></div>
+</div>
+
+<!-- ══ LOGO FIXE ══ -->
+<div id="logo">Avrila<span class="ld">.</span></div>
+
+<!-- ══ MENU FLOTTANT ══ -->
+<nav id="fmenu" role="navigation" aria-label="Menu principal">
+  <button class="orbit-wrap" id="orbitBtn" aria-label="Ouvrir le menu de navigation" aria-expanded="true" style="background:transparent;border:none;cursor:pointer;">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="planet"></div>
+    <div class="sat s1"></div>
+    <div class="sat s2"></div>
+    <div class="sat s3"></div>
+  </button>
+  <div class="msep" role="separator"></div>
+  <button class="mi act" data-sec="s-hero" aria-current="page" style="background:transparent;border:none;cursor:pointer;">Accueil</button>
+  <button class="mi" data-sec="s-univers" style="background:transparent;border:none;cursor:pointer;">Mes univers</button>
+  <button class="mi" data-sec="s-qui" style="background:transparent;border:none;cursor:pointer;">Qui suis-je&nbsp;?</button>
+  <button class="mi" data-sec="s-contact" style="background:transparent;border:none;cursor:pointer;">Contact</button>
 </nav>
 
-<!-- ══ HERO ══ -->
-<section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Hub personnel · 2026</div>
-
-    <h1 class="hero-title">
-      Fabrice<br>
-      <span class="italic">Avrila</span>
-    </h1>
-
-    <p class="hero-subtitle">
-      Formateur professionnel
-      <span>·</span>
-      Développeur web
-      <span>·</span>
-      Créateur de projets digitaux
-    </p>
-
-    <p class="hero-accroche">
-      Bienvenue sur mon espace central. Retrouvez ici mes activités de formation, mes projets web et mon site dédié à l'île Maurice.
-    </p>
-
+<main id="main-content">
+<!-- ══ S1 HERO ══ -->
+<section id="s-hero">
+  <div class="aurora">
+    <div class="abl ab1"></div>
+    <div class="abl ab2"></div>
+    <div class="abl ab3"></div>
+  </div>
+  <div class="hero-inner" id="heroInner">
+    <div class="h-tag"><div class="h-tag-line"></div>Hub personnel · 2026</div>
+    <h1 class="h1">Fabrice <strong>Avrila</strong></h1>
+    <div class="h-div"></div>
+    <p class="h-roles">Formateur professionnel<span class="s">·</span>Développeur web<span class="s">·</span>Créateur digital</p>
+    <p class="h-accroche">Un seul espace pour découvrir mes formations, mes projets web et mes contenus autour de l'île Maurice.</p>
     <div class="hero-btns">
-      <a href="https://formation.avrila.fr" class="btn-hero formation">
-        🎓 Avrila Formation
+      <a href="#s-univers" class="btn btn-f">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 5v6L8 15 2 11V5z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        Formation
       </a>
-      <a href="https://web.avrila.fr" class="btn-hero web">
-        💻 Développement Web
+      <a href="#s-univers" class="btn btn-w">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M7 8l-4 4 4 4M9 8l4 4-4 4M10 2l-4 12" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Web
       </a>
-      <a href="https://ilemauriceinside.fr" class="btn-hero maurice">
-        🌊 Île Maurice Inside
+      <a href="#s-univers" class="btn btn-m">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.4"/><path d="M2 8h12M8 2c-2 2-3 4-3 6s1 4 3 6" stroke="white" stroke-width="1.2"/></svg>
+        Île Maurice
       </a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="hero-bg"></div>
-    <div class="hero-geo"></div>
-    <div class="hero-floats">
-      <div class="hero-float-card">
-        <div class="hfc-dot f">🎓</div>
-        <div class="hfc-text">
-          <strong>Avrila Formation</strong>
-          <span>CSE · SSCT · Prévention · Dialogue social</span>
-        </div>
-      </div>
-      <div class="hero-float-card">
-        <div class="hfc-dot w">💻</div>
-        <div class="hfc-text">
-          <strong>Développement Web</strong>
-          <span>Sites · Applications · IA · Code sur mesure</span>
-        </div>
-      </div>
-      <div class="hero-float-card">
-        <div class="hfc-dot m">🌊</div>
-        <div class="hfc-text">
-          <strong>Île Maurice Inside</strong>
-          <span>Vivre · Voyager · S'installer</span>
-        </div>
-      </div>
+      <a href="#s-qui" class="btn-ol btn-bl">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="#516CA2" stroke-width="1.4"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="#516CA2" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Mon parcours
+      </a>
+      <a href="#s-contact" class="btn-ol btn-go">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="#C9920A" stroke-width="1.4"/><path d="M5 2v2M11 2v2M2 7h12" stroke="#C9920A" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Rendez-vous
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ══ PRÉSENTATION ══ -->
-<section class="section-presentation" id="presentation">
-  <div>
-    <p class="pres-label reveal">À propos</p>
-    <h2 class="pres-title reveal reveal-delay-1">
-      Un parcours entre <em>pédagogie,</em><br>
-      technologie et projets de vie
-    </h2>
-    <p class="pres-text reveal reveal-delay-2">
-      Mon activité s'articule autour de trois univers complémentaires : la formation professionnelle, le développement web et la création de contenus pratiques autour de l'île Maurice. Chaque projet repose sur la même approche : rendre les informations claires, utiles et directement exploitables.
-    </p>
+<!-- ══ S2 MES UNIVERS ══ -->
+<section id="s-univers">
+  <div class="aurora-dark">
+    <div class="abd ad1"></div>
+    <div class="abd ad2"></div>
   </div>
-  <div class="pres-valeurs">
-    <div class="valeur-item reveal reveal-delay-1">
-      <div class="valeur-icon">🔍</div>
-      <div class="valeur-nom">Clarté</div>
-      <div class="valeur-desc">Des contenus lisibles, sans jargon inutile.</div>
+  <div style="position:relative;z-index:1;">
+    <div class="s-label sl-uni reveal">Mes univers</div>
+    <h2 class="s-h2 reveal rd1">Trois projets,<br><em>une même vision.</em></h2>
+    <div class="univers-grid">
+      <!-- CARTE FORMATION -->
+      <a href="https://formation.avrila.fr" class="ucard reveal rd1">
+        <div class="ucard-shine"></div>
+        <div class="ucard-halo" style="background:#516CA2;"></div>
+        <div class="ucard-stripe" style="background:linear-gradient(90deg,#516CA2,#7B9DD4);"></div>
+        <div class="uc-num">01 — Formation professionnelle</div>
+        <div class="uc-icon" style="background:rgba(81,108,162,.15);border:1px solid rgba(81,108,162,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 8l10 5 10-5-10-5z" stroke="#516CA2" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 10.5v5c0 1.7 2.2 3 5 3s5-1.3 5-3v-5" stroke="#516CA2" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="uc-title">Avrila Formation</div>
+        <div class="uc-sub">CSE · SSCT · Prévention · Dialogue social</div>
+        <div class="uc-sep"></div>
+        <p class="uc-text">Des formations concrètes et opérationnelles pour accompagner les élus du CSE, les membres de la CSSCT et les entreprises sur les enjeux sociaux, économiques, santé-sécurité et conditions de travail.</p>
+        <div class="uc-tags">
+          <span class="utag">CSE</span><span class="utag">SSCT</span><span class="utag">DUERP</span><span class="utag">RPS</span><span class="utag">Harcèlement</span>
+        </div>
+        <span class="uc-btn">Accéder au site <span class="uc-arrow">↗</span></span>
+      </a>
+      <!-- CARTE WEB -->
+      <a href="https://web.avrila.fr" class="ucard reveal rd2">
+        <div class="ucard-shine"></div>
+        <div class="ucard-halo" style="background:#2D3A47;"></div>
+        <div class="ucard-stripe" style="background:linear-gradient(90deg,#2D3A47,#5A6E7F);"></div>
+        <div class="uc-num">02 — Tech & Digital</div>
+        <div class="uc-icon" style="background:rgba(45,58,71,.2);border:1px solid rgba(45,58,71,.3);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 5l-4 14" stroke="#8AAABB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="uc-title">Développement Web</div>
+        <div class="uc-sub">Sites · Applications · IA · Sur mesure</div>
+        <div class="uc-sep"></div>
+        <p class="uc-text">Un espace pour présenter mes projets de développement web, mes applications, mes expérimentations avec l'IA et mes créations digitales codées sur mesure.</p>
+        <div class="uc-tags">
+          <span class="utag">HTML/CSS</span><span class="utag">JavaScript</span><span class="utag">IA</span><span class="utag">UI/UX</span>
+        </div>
+        <span class="uc-btn">Voir les projets <span class="uc-arrow">↗</span></span>
+      </a>
+      <!-- CARTE MAURICE -->
+      <a href="https://ilemauriceinside.fr" class="ucard reveal rd3">
+        <div class="ucard-shine"></div>
+        <div class="ucard-halo" style="background:#1A8A74;"></div>
+        <div class="ucard-stripe" style="background:linear-gradient(90deg,#1A8A74,#3DBDA0);"></div>
+        <div class="uc-num">03 — Île Maurice</div>
+        <div class="uc-icon" style="background:rgba(26,138,116,.15);border:1px solid rgba(26,138,116,.2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1A8A74" stroke-width="1.5"/><path d="M12 3c-2.5 2-4 5-4 9s1.5 7 4 9M12 3c2.5 2 4 5 4 9s-1.5 7-4 9M3 12h18" stroke="#1A8A74" stroke-width="1.3"/></svg>
+        </div>
+        <div class="uc-title">Île Maurice Inside</div>
+        <div class="uc-sub">Voyage · Expatriation · Vie locale</div>
+        <div class="uc-sep"></div>
+        <p class="uc-text">Un site dédié à l'île Maurice, pensé pour aider les voyageurs, expatriés et futurs résidents à mieux comprendre les démarches, les lieux, les activités et la vie sur place.</p>
+        <div class="uc-tags">
+          <span class="utag">Voyage</span><span class="utag">Démarches</span><span class="utag">Activités</span><span class="utag">Conseils</span>
+        </div>
+        <span class="uc-btn">Découvrir <span class="uc-arrow">↗</span></span>
+      </a>
     </div>
-    <div class="valeur-item reveal reveal-delay-2">
-      <div class="valeur-icon">📚</div>
-      <div class="valeur-nom">Pédagogie</div>
-      <div class="valeur-desc">Apprendre par la pratique, toujours.</div>
-    </div>
-    <div class="valeur-item reveal reveal-delay-3">
-      <div class="valeur-icon">⚙️</div>
-      <div class="valeur-nom">Pragmatisme</div>
-      <div class="valeur-desc">Ce qui fonctionne, concrètement, sur le terrain.</div>
-    </div>
-    <div class="valeur-item reveal reveal-delay-4">
-      <div class="valeur-icon">✨</div>
-      <div class="valeur-nom">Créativité</div>
-      <div class="valeur-desc">Trouver l'angle original qui fait la différence.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ MES UNIVERS ══ -->
-<section class="section-univers" id="univers">
-  <div class="univers-header">
-    <p class="section-label reveal">Mes univers</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      Trois projets,<br>
-      <em>une même vision</em>
-    </h2>
-  </div>
-
-  <div class="univers-grid">
-
-    <!-- FORMATION -->
-    <a href="https://formation.avrila.fr" class="univers-card formation reveal reveal-delay-1">
-      <div class="card-top">
-        <div class="card-top-circle c1"></div>
-        <div class="card-top-circle c2"></div>
-        <div class="card-emoji">🎓</div>
-        <div class="card-num">01 — Formation</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Avrila Formation</div>
-        <div class="card-subtitle">CSE · SSCT · Prévention · Dialogue social</div>
-        <div class="card-sep"></div>
-        <p class="card-text">
-          Des formations concrètes et opérationnelles pour accompagner les élus du CSE, les membres de la CSSCT et les entreprises sur les enjeux sociaux, économiques, santé-sécurité et conditions de travail.
-        </p>
-        <span class="card-btn">
-          Accéder au site formation
-          <em class="card-arrow">↗</em>
-        </span>
-        <div class="card-url">formation.avrila.fr</div>
-      </div>
-    </a>
-
-    <!-- WEB -->
-    <a href="https://web.avrila.fr" class="univers-card web reveal reveal-delay-2">
-      <div class="card-top">
-        <div class="card-top-circle c1"></div>
-        <div class="card-top-circle c2"></div>
-        <div class="card-emoji">💻</div>
-        <div class="card-num">02 — Web & Tech</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Développement Web</div>
-        <div class="card-subtitle">Sites · Applications · IA · Code sur mesure</div>
-        <div class="card-sep"></div>
-        <p class="card-text">
-          Un espace pour présenter mes projets de développement web, mes applications, mes expérimentations avec l'IA et mes créations digitales codées sur mesure.
-        </p>
-        <span class="card-btn">
-          Voir mes projets web
-          <em class="card-arrow">↗</em>
-        </span>
-        <div class="card-url">web.avrila.fr</div>
-      </div>
-    </a>
-
-    <!-- MAURICE -->
-    <a href="https://ilemauriceinside.fr" class="univers-card maurice reveal reveal-delay-3">
-      <div class="card-top">
-        <div class="card-top-circle c1"></div>
-        <div class="card-top-circle c2"></div>
-        <div class="card-emoji">🌊</div>
-        <div class="card-num">03 — Maurice</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Île Maurice Inside</div>
-        <div class="card-subtitle">Vivre · Voyager · S'installer</div>
-        <div class="card-sep"></div>
-        <p class="card-text">
-          Un site dédié à l'île Maurice, pensé pour aider les voyageurs, expatriés et futurs résidents à mieux comprendre les démarches, les lieux, les activités et la vie sur place.
-        </p>
-        <span class="card-btn">
-          Découvrir Île Maurice Inside
-          <em class="card-arrow">↗</em>
-        </span>
-        <div class="card-url">ilemauriceinside.fr</div>
-      </div>
-    </a>
-
   </div>
 </section>
 
-<!-- ══ CONTACT ══ -->
-<section class="section-contact" id="contact">
-  <div class="contact-inner">
-    <div class="contact-left">
-      <p class="section-label reveal">Contact</p>
-      <h2 class="contact-title reveal reveal-delay-1">
-        Un projet ?<br>
-        <em>Parlons-en.</em>
-      </h2>
-      <p class="contact-text reveal reveal-delay-2">
-        Que ce soit pour une formation, un projet web ou une collaboration autour de l'île Maurice, je suis disponible pour échanger.
+<!-- ══ S3 QUI SUIS-JE ══ -->
+<section id="s-qui">
+  <div class="aurora" style="opacity:.6;">
+    <div class="abl ab1"></div>
+    <div class="abl ab3"></div>
+  </div>
+  <div class="qui-inner" style="position:relative;z-index:1;">
+    <!-- Colonne gauche : infos -->
+    <div>
+      <div class="s-label sl-qui reveal">Qui suis-je ?</div>
+      <h2 class="s-h2-dark reveal rd1">Un parcours entre<br><em>pédagogie</em> et code.</h2>
+      <p class="qui-text reveal rd2">
+        <!-- ✏️ MODIFIER : votre présentation -->
+        Formateur professionnel adulte, développeur web et créateur de contenus. Basé à l'île Maurice, j'accompagne les entreprises françaises en formation à distance et en présentiel sur les enjeux CSE, SSCT et dialogue social.
       </p>
+      <div class="who-btns reveal rd2">
+        <a href="#" class="btn-ol btn-bl">Mon parcours complet ↗</a>
+        <a href="#s-contact" class="btn-ol btn-go">Prendre rendez-vous</a>
+      </div>
+      <!-- Timeline -->
+      <div class="timeline" style="margin-top:36px;">
+        <div class="tl-item reveal rd1">
+          <div class="tl-dot"></div>
+          <div>
+            <!-- ✏️ MODIFIER : vos jalons -->
+            <div class="tl-year">2010</div>
+            <div class="tl-title">Formateur professionnel</div>
+            <div class="tl-desc">Spécialisation CSE, SSCT et dialogue social</div>
+          </div>
+        </div>
+        <div class="tl-item reveal rd2">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2018</div>
+            <div class="tl-title">Développement web</div>
+            <div class="tl-desc">Sites modernes, applications et IA</div>
+          </div>
+        </div>
+        <div class="tl-item reveal rd3">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2022</div>
+            <div class="tl-title">Île Maurice Inside</div>
+            <div class="tl-desc">Création du guide en ligne sur Maurice</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="contact-methods">
-      <a href="mailto:contact@avrila.fr" class="contact-item reveal reveal-delay-1">
-        <div class="contact-icon ci-email">📧</div>
-        <div class="contact-item-text">
-          <strong>E-mail</strong>
-          <span>contact@avrila.fr</span>
+    <!-- Colonne droite : carte -->
+    <div class="who-card reveal rd2">
+      <div class="who-av-row">
+        <div class="who-av">FA</div>
+        <div>
+          <div class="who-title">Fabrice Avrila</div>
+          <div class="who-role">Formateur · Développeur · Créateur</div>
         </div>
-      </a>
-      <a href="https://wa.me/596XXXXXXXX" class="contact-item reveal reveal-delay-2">
-        <div class="contact-icon ci-wa">💬</div>
-        <div class="contact-item-text">
-          <strong>WhatsApp</strong>
-          <span>Message direct · Réponse rapide</span>
+      </div>
+      <p class="who-body">
+        Mon approche repose sur une conviction : rendre l'information claire, utile et directement exploitable. Que ce soit en formation, en développement web ou dans mes contenus autour de l'île Maurice, je conçois des expériences qui ont du sens.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(81,108,162,.06);border:1px solid rgba(81,108,162,.12);border-radius:10px;padding:16px 14px;">
+          <div style="font-size:22px;font-weight:700;color:var(--bleu);margin-bottom:4px;">15+</div>
+          <div style="font-size:11px;font-weight:300;color:#8899AA;letter-spacing:.04em;">Années d'expérience</div>
         </div>
-      </a>
-      <a href="https://linkedin.com/in/fabriceavrila" class="contact-item reveal reveal-delay-3">
-        <div class="contact-icon ci-li">🔗</div>
-        <div class="contact-item-text">
-          <strong>LinkedIn</strong>
-          <span>Fabrice Avrila · Formateur professionnel</span>
+        <div style="background:rgba(201,146,10,.06);border:1px solid rgba(201,146,10,.12);border-radius:10px;padding:16px 14px;">
+          <div style="font-size:22px;font-weight:700;color:var(--or);margin-bottom:4px;">3</div>
+          <div style="font-size:11px;font-weight:300;color:#8899AA;letter-spacing:.04em;">Univers digitaux</div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ══ S4 CONTACT ══ -->
+<section id="s-contact">
+  <div class="aurora-dark">
+    <div class="abd ad1"></div>
+    <div class="abd ad2"></div>
+  </div>
+  <div class="contact-inner" style="position:relative;z-index:1;">
+    <div>
+      <div class="s-label sl-contact s-label-contact reveal">Contact</div>
+      <h2 class="contact-h2 reveal rd1">Échangeons<br><em>ensemble.</em></h2>
+      <p class="contact-text reveal rd2">Pour une demande de formation, une collaboration ou un projet web, je suis disponible pour échanger.</p>
+      <div class="contact-methods">
+        <!-- ✏️ MODIFIER : vos coordonnées -->
+        <a href="mailto:contact@avrila.fr" class="cmethod reveal rd1">
+          <div class="cm-icon" style="background:rgba(81,108,162,.2);">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="11" rx="2" stroke="#516CA2" stroke-width="1.4"/><path d="M3 7l7 5 7-5" stroke="#516CA2" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="cm-title">Email</div>
+            <div class="cm-detail">contact@avrila.fr</div>
+          </div>
+        </a>
+        <!-- ✏️ MODIFIER : wa.me/TONNUMERO -->
+        <a href="https://wa.me/TONNUMERO" target="_blank" rel="noopener" class="cmethod reveal rd2">
+          <div class="cm-icon" style="background:rgba(37,211,102,.15);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 01-13.3 7.9L3 21l1.1-4.7A9 9 0 1121 12z" stroke="#25D366" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 10.5c.5 1 1.5 2.5 3 3.5 0 0 1-.5 1.5-.5s1 .5 1 1-.5 1.5-1.5 1.5C11 16 8 13.5 8 13.5S6 11 6 9.5C6 8.5 7 8 7.5 8S8.5 8.5 8.5 9 9 10 9 10.5z" stroke="#25D366" stroke-width="1.2"/></svg>
+          </div>
+          <div>
+            <div class="cm-title">WhatsApp</div>
+            <div class="cm-detail">Message direct · Réponse rapide</div>
+          </div>
+        </a>
+        <!-- ✏️ MODIFIER : linkedin.com/in/TONPROFIL -->
+        <a href="https://www.linkedin.com/in/TONPROFIL" target="_blank" rel="noopener" class="cmethod reveal rd3">
+          <div class="cm-icon" style="background:rgba(0,119,181,.2);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#0077B5" stroke-width="1.5"/><path d="M7 10v7M7 7v.5M11 17v-4a2 2 0 014 0v4M11 10v7" stroke="#0077B5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="cm-title">LinkedIn</div>
+            <div class="cm-detail">Fabrice Avrila · Formateur & Développeur</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- RDV card dark -->
+    <div class="rdv-card-dark reveal rd2">
+      <div class="rdv-top-d">
+        <div class="rdv-ico-d">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="#C9920A" stroke-width="1.4"/><path d="M7 3v2M13 3v2M3 8h14" stroke="#C9920A" stroke-width="1.4" stroke-linecap="round"/><rect x="6" y="11" width="2" height="2" rx=".4" fill="#C9920A"/><rect x="9" y="11" width="2" height="2" rx=".4" fill="#C9920A"/></svg>
+        </div>
+        <div>
+          <div class="rdv-h">Prendre rendez-vous</div>
+          <div class="rdv-p">Google Agenda — synchronisation temps réel</div>
+        </div>
+      </div>
+      <div class="slots-dark">
+        <div class="sd">Lun 28 · 10h00</div>
+        <div class="sd ok">Mar 29 · 14h30</div>
+        <div class="sd ok">Mer 30 · 11h00</div>
+        <div class="sd">Jeu 1 · 09h00</div>
+      </div>
+      <!-- ✏️ MODIFIER : lien Google Appointment Scheduling -->
+      <a href="https://calendar.google.com" target="_blank" rel="noopener" class="btn-ol btn-go" style="width:100%;justify-content:center;margin-bottom:14px;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="#C9920A" stroke-width="1.4"/><path d="M5 2v2M11 2v2M2 7h12" stroke="#C9920A" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Réserver un créneau
+      </a>
+      <div class="gbadge-d">
+        <svg width="11" height="11" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Synchronisé avec Google Agenda
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><strong>Fabrice Avrila</strong> · Hub personnel</div>
-  <div class="footer-copy">© 2026 — Fabrice Avrila — Île Maurice</div>
-  <div class="footer-links">
-    <a href="https://formation.avrila.fr">Formation</a>
-    <a href="https://web.avrila.fr">Web</a>
-    <a href="https://ilemauriceinside.fr">Île Maurice</a>
+  <span class="ft-logo">Fabrice Avrila</span>
+  <span class="ft-copy">© 2026 — Tous droits réservés</span>
+  <div class="ft-links">
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/confidentialite.html">Confidentialité</a>
   </div>
 </footer>
 
 <script>
-/* ── Nav scroll ── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
+/* ══ 1. CURSEUR ══ */
+const cdot=document.getElementById('cdot'),cring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cdot.style.left=mx+'px';cdot.style.top=my+'px';},{passive:true});
+(function ar(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;cring.style.left=rx+'px';cring.style.top=ry+'px';requestAnimationFrame(ar);})();
+document.querySelectorAll('.ucard,.who-card,.cmethod,.rdv-card-dark').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
 });
 
-/* ── Reveal on scroll ── */
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+/* ══ 2. PARTICULES ══ */
+(function(){
+  const cv=document.getElementById('particles'),ctx=cv.getContext('2d');
+  let W,H,pts=[];
+  function sz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+  function init(){pts=[];const n=Math.min(Math.floor(W*H/16000),70);for(let i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.5+.5,o:Math.random()*.3+.1,h:['81,108,162','201,146,10','26,138,116'][~~(Math.random()*3)]});}
+  function draw(){ctx.clearRect(0,0,W,H);for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<105){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(81,108,162,${.045*(1-d/105)})`;ctx.lineWidth=.5;ctx.stroke();}}pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(${p.h},${p.o})`;ctx.fill();});requestAnimationFrame(draw);}
+  window.addEventListener('resize',()=>{sz();init();},{passive:true});sz();init();draw();
+})();
+
+/* ══ 3. INTRO ══ */
+(function(){
+  const WORD=['A','v','r','i','l','a','.'];
+  const intro=document.getElementById('intro');
+  const lrow=document.getElementById('lrow');
+  lrow.innerHTML='';
+  WORD.forEach((ch,i)=>{
+    const s=document.createElement('span');
+    s.className='ltr'+(ch==='.'?' dot':'');
+    s.textContent=ch;s.id='l'+i;lrow.appendChild(s);
+  });
+
+  // Entrée décalée
+  WORD.forEach((_,i)=>setTimeout(()=>{
+    const el=document.getElementById('l'+i);
+    el.style.transition='opacity .35s ease, transform .35s cubic-bezier(0.34,1.6,0.64,1)';
+    el.style.opacity='1';el.style.transform='translateY(0)';
+  },180+i*85));
+
+  // Rebonds (4 vagues, 5 secondes)
+  const bs=180+WORD.length*85+250;
+  function wave(w){WORD.forEach((_,i)=>setTimeout(()=>{
+    const el=document.getElementById('l'+i);if(!el)return;
+    el.style.transition='transform .2s cubic-bezier(0.34,1.9,0.64,1)';
+    el.style.transform='translateY(-13px)';
+    setTimeout(()=>{el.style.transition='transform .18s cubic-bezier(0.5,0,.5,1)';el.style.transform='translateY(0)';},200);
+  },i*52));}
+  for(let w=0;w<4;w++)setTimeout(()=>wave(w),bs+w*520);
+
+  // Sortie
+  const exit=bs+4*520+350;
+  setTimeout(()=>{lrow.querySelectorAll('.ltr').forEach(el=>{el.style.transition='opacity .45s ease,transform .45s cubic-bezier(0.76,0,0.24,1)';el.style.opacity='0';el.style.transform='scale(1.25)';});},exit);
+
+  // Page
+  setTimeout(()=>{
+    intro.classList.add('out');
+    document.getElementById('logo').classList.add('show');
+    setTimeout(()=>{
+      const fm=document.getElementById('fmenu');
+      fm.classList.add('show');
+      // Révéler contenu hero
+      document.getElementById('heroInner').querySelectorAll('*').forEach((el,i)=>{
+        el.style.transition=`opacity .7s ${.1+i*.05}s, transform .7s ${.1+i*.05}s cubic-bezier(0.34,1.2,0.64,1)`;
+      });
+    },300);
+  },exit+450);
+})();
+
+/* ══ 4. MENU — COLLAPSE AU SCROLL ══ */
+const fmenu=document.getElementById('fmenu');
+const orbitBtn=document.getElementById('orbitBtn');
+let menuCollapsed=false;
+let scrollTimer=null;
+let lastST=0;
+
+window.addEventListener('scroll',()=>{
+  const st=window.scrollY;
+  const docH=document.documentElement.scrollHeight;
+  const winH=window.innerHeight;
+  const atBottom=(st + winH >= docH - 60); // 60px de tolérance
+  const atTop=(st<=80);
+
+  if((atTop || atBottom) && menuCollapsed){
+    // Déployer automatiquement en haut ET en bas de page
+    menuCollapsed=false;
+    fmenu.classList.remove('collapsed');
+  } else if(!atTop && !atBottom && !menuCollapsed){
+    menuCollapsed=true;
+    fmenu.classList.add('collapsed');
+  }
+  lastST=st;
+},{passive:true});
+
+// Clic sur orbite quand menu collapsed → expand
+orbitBtn.addEventListener('click',()=>{
+  if(menuCollapsed){
+    menuCollapsed=false;
+    fmenu.classList.remove('collapsed');
+    // Recollapse après 4s sans scroll
+    clearTimeout(scrollTimer);
+    scrollTimer=setTimeout(()=>{
+      if(window.scrollY>80){menuCollapsed=true;fmenu.classList.add('collapsed');}
+    },4000);
+  }
+});
+
+// Clic item menu → scroll vers section + ferme
+document.querySelectorAll('.mi').forEach(mi=>{
+  mi.addEventListener('click',function(){
+    document.querySelectorAll('.mi').forEach(x=>x.classList.remove('act'));
+    this.classList.add('act');
+    const sec=document.getElementById(this.dataset.sec);
+    if(sec) sec.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+/* ══ 5. ACTIVE SECTION ══ */
+const sections=[
+  {id:'s-hero',    mi:0, dark:false},
+  {id:'s-univers', mi:1, dark:true},
+  {id:'s-qui',     mi:2, dark:false},
+  {id:'s-contact', mi:3, dark:true}
+];
+const miEls=document.querySelectorAll('.mi');
+const fmenuEl=document.getElementById('fmenu');
+const secObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const sec=sections.find(x=>x.id===e.target.id);
+      if(sec){
+        miEls.forEach((m,i)=>m.classList.toggle('act',i===sec.mi));
+        fmenuEl.classList.toggle('dark-mode',sec.dark);
+        miEls.forEach((m,i)=>{m.removeAttribute('aria-current');if(i===sec.mi)m.setAttribute('aria-current','page');});
+      }
     }
   });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => observer.observe(el));
+},{threshold:.5});
+sections.forEach(s=>{const el=document.getElementById(s.id);if(el)secObs.observe(el);});
+
+/* ══ 6. TILT 3D CARTES ══ */
+document.querySelectorAll('.ucard').forEach(card=>{
+  const shine=card.querySelector('.ucard-shine');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left,y=e.clientY-r.top;
+    const tx=(y-r.height/2)/r.height*-7,ty=(x-r.width/2)/r.width*7;
+    card.style.transform=`perspective(900px) rotateX(${tx}deg) rotateY(${ty}deg) translateY(-5px) scale(1.01)`;
+    shine.style.setProperty('--mx',`${(x/r.width*100).toFixed(1)}%`);
+    shine.style.setProperty('--my',`${(y/r.height*100).toFixed(1)}%`);
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transition='transform .6s cubic-bezier(0.76,0,0.24,1)';
+    card.style.transform='';
+    setTimeout(()=>card.style.transition='',600);
+  });
+});
+
+/* ══ 7. REVEAL SCROLL ══ */
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');obs.unobserve(x.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ══ 8. SLOTS HOVER ══ */
+document.querySelectorAll('.sd').forEach(s=>{
+  s.addEventListener('click',function(){
+    document.querySelectorAll('.sd').forEach(x=>{x.style.background='';x.style.borderColor='';x.style.color='';});
+    this.style.background='rgba(81,108,162,.15)';this.style.borderColor='#516CA2';this.style.color='#516CA2';
+  });
+});
+
+/* ══ 9. LIENS ANCRES BOUTONS HERO ══ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
 </script>
 </body>
 </html>
